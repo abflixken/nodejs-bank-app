@@ -41,7 +41,7 @@ const withdraw = ({ acId, amount }, onWithdraw = undefined) => {
       } else {
         const balance = parseFloat(res.rows[0].balance);
 
-        const newBalance = balance - amount;
+        const newBalance = balance - parseFloat(amount);
 
         client.query(
           `update account set balance = $1 where ac_id = $2`,
@@ -69,7 +69,7 @@ const deposit = ({ acId, amount }, onDeposit = undefined) => {
         console.log(`\n problem in depositing`);
       } else {
         const balance = parseFloat(res.rows[0].balance);
-        const newBalance = balance + amount;
+        const newBalance = balance + parseFloat(amount);
 
         client.query(
           `update account set balance = $1 where ac_id = $2`,
